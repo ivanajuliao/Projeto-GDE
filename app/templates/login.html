@@ -1,0 +1,51 @@
+{% extends 'login_base.html' %}
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+    {% if form.errors %}
+    <div class="row" style="margin:0px;">
+        <div class="col s4 offset-s4">
+            <p class="center-align card-panel teal lighten-2">
+                Usuário ou senha incorretos.
+                Tente novamente.
+            </p>
+         </div>
+     </div>
+    {% endif %}
+    <div class="row">
+        <div id= "form-login" class="col s4 offset-s4">
+            <div class="card-panel blue-grey lighten-4 z-depth-2">
+                <form id="login-form" method="post"
+                      action="{% url 'django.contrib.auth.views.login' %}">
+                    {% csrf_token %}
+
+                    <div class="input-field">
+                        <i class="material-icons prefix">account_circle</i>
+                        <label for="id_username">Siape</label>
+                        <input id="id_username" name="username"
+                                   type="text" class="validate">
+                    </div>
+
+                    <div class="input-field">
+                            <i class="material-icons prefix">lock</i>
+                            <label for="id_password">Senha</label>
+                            <input id="id_password" name="password"
+                                       type="password" class="validate">
+                    </div>
+
+                    <br/><br/>
+
+                    <button id="botao-login" class="btn blue-grey darken-4 z-depth-1" type="submit" name="action">Login</button>
+                    <input type="hidden" name="next" value="/home" />
+                    <ul class="center hide-on-med-and-down">
+                          <li><a class="blue-grey-text" href="#">Esqueceu a senha?</a></li>
+                    </ul>
+                    <ul class="center hide-on-med-and-down">
+                          <li><strong>Ainda não tem uma conta?</strong><br/><a class="blue-grey-text" href="{% url 'app.views.cadastroUsuario' %}">Cadastre-se</a></li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

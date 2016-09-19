@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Setor{% endblock %}
+
+{% block content %}
+    <div id="content-container" class="container p-none">
+        <div class="lgn-container col-lg-8">
+            <form id="setor-edit" method="post"
+                  action="{% url 'app.views.setor_edit' pk=setor.pk %}">
+                {% csrf_token %}
+
+                <br/><br/>
+
+                <div class="input-field">
+                    <label for="nome">Nome</label>
+                    <input type="text" id="nome" class="validate" name="nome" value="{{setor.nome}}">
+                </div>
+
+                <div class="input-field">
+                    <label for="nome">Sigla</label>
+                    <input type="text" id="sigla" class="validate" name="sigla" value="{{setor.sigla}}">
+                </div>
+
+               <div class="input-field col s12">
+                    <button class="btn right orange darken-4" type="submit">Salvar</button>
+                    <input type="hidden" name="next" value="/setores_list" />
+                </div>
+
+            </form>
+        </div>
+    </div>
+{% endblock content %}

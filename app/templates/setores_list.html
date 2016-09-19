@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}Setor{% endblock %}
+
+{% block content %}
+    <div id="content-container" class="container p-none">
+        <div class="lgn-container col-lg-8">
+            <form>
+                {% csrf_token %}
+
+                <br/><br/>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Setores</th>
+                            <th>Siglas</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for setor in setores %}
+                        <tr>
+                            <td>{{setor.nome}}</td>
+                            <td>{{setor.sigla}}</td>
+                            <td>
+                                <a class="btn-floating waves-effect waves-light teal darken-1" href="{% url 'setor_edit' pk=setor.pk %}">
+                                    <i class="material-icons">mode_edit</i>
+                                </a>
+                                <a class="btn-floating waves-effect waves-light red"  href="{% url 'setor_remove' pk=setor.pk %}">
+                                    <i class="material-icons">delete</i>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <a href="{% url 'app.views.setor' %}" class="cadastrar btn-floating btn-large waves-effect waves-light orange darken-4 right">
+                    <i class="material-icons right">add</i>
+                </a>
+
+            </form>
+        </div>
+    </div>
+{% endblock content %}

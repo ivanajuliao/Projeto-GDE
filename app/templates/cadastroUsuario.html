@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}Cadastro{% endblock %}
+
+{% block content %}
+    <div id="content-container" class="container p-none">
+        <div class="row">
+            <form id="register-form" method="post" class="col s12"
+                  action="{% url 'app.views.cadastroUsuario' %}">
+                {% csrf_token %}
+                <h3>Cadastro de Usuário</h3>
+                {% if form.errors %}
+                    <p>Nome de usuário ou senha não conferem. Tente novamente.</p>
+                {% endif %}
+
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">account_circle</i>
+                    <label for="id_firstname">Nome</label>
+                    <input id="id_firstname" name="firstname"
+                               type="text" class="validate">
+                </div>
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">account_circle</i>
+                    <label for="id_lastname">Sobrenome</label>
+                    <input id="id_lastname" name="lastname"
+                               type="text" class="validate">
+                </div>
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">label</i>
+                    <label for="id_username">SIAPE</label>
+                    <input id="id_username" name="username"
+                               type="text" class="validate">
+                </div>
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">email</i>
+                    <label for="id_email">Email</label>
+                    <input id="id_email" name="email"
+                               type="text" class="validate">
+                </div>
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">lock</i>
+                    <label for="id_password">Password</label>
+                    <input id="id_password" name="password"
+                               type="password" class="validate">
+                </div>
+                <div class="input-field col s12">
+                    <button class="btn right orange darken-4" type="submit">Enviar</button>
+                    <input type="hidden" name="next" value="/" />
+                </div>
+
+            </form>
+        </div>
+    </div>
+{% endblock content %}

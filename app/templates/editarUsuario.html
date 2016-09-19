@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div id="content-container" class="container p-none">
+        <div class="row">
+            <form id="register-form" method="post" class="col s12"
+                  action="">
+                {% csrf_token %}
+                <h3>Editar dados cadastrais</h3>
+                {% if messages %}
+                <div class="col s12">
+                    <ul class="messages">
+                        {% for message in messages %}
+                        <li {% if message.tags %} class="center-align card-panel teal lighten-2  {{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">account_circle</i>
+                        <label for="id_firstname">Nome</label>
+                        <input id="id_firstname" name="firstname"
+                                   type="text" class="validate" value="{{user.first_name}}">
+                    </div>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">account_circle</i>
+                        <label for="id_lastname">Sobrenome</label>
+                        <input id="id_lastname" name="lastname"
+                                   type="text" class="validate" value="{{user.last_name}}">
+                    </div>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">label</i>
+                        <label for="id_username">SIAPE</label>
+                        <input id="id_username" name="username"
+                                   type="text" class="validate" value="{{user.username}}">
+                    </div>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">email</i>
+                        <label for="id_email">Email</label>
+                        <input id="id_email" name="email"
+                                   type="text" class="validate" value="{{user.email }}">
+                    </div>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">lock</i>
+                        <label for="id_password">Password</label>
+                        <input id="id_password" name="password"
+                                   type="password" class="validate" value="{{user.password}}">
+                    </div>
+
+                <button class="btn right orange darken-4" type="submit">Salvar</button>
+            </form>
+        </div>
+	</div>
+                     
+{% endblock content %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}Setor{% endblock %}
+
+{% block content %}
+    <div id="content-container" class="container p-none">
+        <div class="lgn-container col-lg-8">
+            <form id="setor-form" method="post"
+                  action="{% url 'app.views.setor' %}">
+                {% csrf_token %}
+                <h4>Cadastro de Setor</h4>
+                <br/><br/>
+
+                    <div class="input-field">
+                        <label for="nome">Nome</label>
+                        <input type="text" id="nome" class="validate" name="nome">
+                    </div>
+                    <div class="input-field">
+                        <label for="nome">Sigla</label>
+                        <input type="text" id="sigla" class="validate" name="sigla">
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field">
+                            <button class="btn right orange darken-4" type="submit">Cadastrar</button>
+                            <input type="hidden" name="next" value="/setores_list" />
+                        </div>
+                    </div>
+
+
+            </form>
+        </div>
+    </div>
+{% endblock content %}

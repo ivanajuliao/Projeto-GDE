@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}EspecieDocumental{% endblock %}
+
+{% block content %}
+    <div id="content-container" class="container p-none">
+        <div class="lgn-container col-lg-8">
+            <form>
+                {% csrf_token %}
+
+                <br/><br/>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Espécies Documentais</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for especieDocumental in especiesDocumentais %}
+                        <tr>
+                            <td>{{ especieDocumental.nome }}</td>
+                            <td>
+                                <a class="btn-floating waves-effect waves-light teal darken-1" href="{% url 'especieDocumental_edit' pk=especieDocumental.pk %}">
+                                    <i class="material-icons">mode_edit</i>
+                                </a>
+
+                                 <a class="btn-floating waves-effect waves-light red" href="{% url 'especieDocumental_remove' pk=especieDocumental.pk %}">
+                                    <i class="material-icons">delete</i>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <a href="{% url 'app.views.especieDocumental' %}" class="cadastrar btn-floating btn-large waves-effect waves-light orange darken-4 right">
+                    <i class="material-icons right">add</i>
+                </a>
+            </form>
+        </div>
+    </div>
+{% endblock content %}
