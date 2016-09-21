@@ -1,2 +1,6 @@
-# gde
-Repositorio do projeto gde
+# Projeto GDE
+
+-  Nome do trabalho
+- Minimundo
+-  Nome do grupo
+-  Pitch
