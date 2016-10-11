@@ -18,13 +18,13 @@
                     <tbody>
                         {% for especieDocumental in especiesDocumentais %}
                         <tr>
-                            <td>{{ especieDocumental.nome }}</td>
+                            <td id="nomeEspecie">{{ especieDocumental.nome }}</td>
                             <td>
-                                <a class="btn-floating waves-effect waves-light teal darken-1" href="{% url 'especieDocumental_edit' pk=especieDocumental.pk %}">
+                                <a  name="editar" class="btn-floating waves-effect waves-light teal darken-1" href="{% url 'especieDocumental_edit' pk=especieDocumental.pk %}">
                                     <i class="material-icons">mode_edit</i>
                                 </a>
 
-                                 <a class="btn-floating waves-effect waves-light red" href="{% url 'especieDocumental_remove' pk=especieDocumental.pk %}">
+                                 <a name = "excluir" class="btn-floating waves-effect waves-light red" href="{% url 'especieDocumental_remove' pk=especieDocumental.pk %}">
                                     <i class="material-icons">delete</i>
                                 </a>
                             </td>

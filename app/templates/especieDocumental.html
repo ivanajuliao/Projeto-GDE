@@ -3,17 +3,26 @@
 
 {% block content %}
     <div id="content-container" class="container p-none">
-
         <div class="lgn-container col-lg-8">
             <form id="especieDocumental-form" method="post"
                   action="{% url 'app.views.especieDocumental' %}">
                 {% csrf_token %}
                  <h4>Cadastro de Espécie Documental</h4>
                 <br/><br/>
-
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class="row" style="margin:0px;">
+                        <div class="col s10 offset-s1">
+                            <p id="mensagem" class="center-align card-panel teal lighten-2 messages">
+                                {{ message }}
+                            </p>
+                         </div>
+                     </div>
+                    {% endfor %}
+                {% endif %}
                  <div class="input-field">
                     <label for="nome">Espécie Documental</label>
-                    <input type="text" id="nome" class="validate" name="nome">
+                    <input type="text" id="nome" class="validate" name="nome" required>
                 </div>
 
                 <div class="row">

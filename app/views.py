@@ -58,8 +58,14 @@ def user_detail(request, pk):
 def especieDocumental(request):
     if request.POST:
         nome = request.POST.get('nome', None)
-        EspecieDocumental.objects.create(nome=nome)
-        return HttpResponseRedirect(request.POST.get('next'))
+        existeNoBanco = EspecieDocumental.objects.filter(nome=nome).exists()
+        if(nome!= ''):
+            if (existeNoBanco == True):
+                messages.add_message(request, messages.ERROR,
+                                     'A Especie Documental ja existe. Por favor, tente novamente!')
+            else:
+                EspecieDocumental.objects.create(nome=nome)
+                return HttpResponseRedirect(request.POST.get('next'))
     return render(request, 'especieDocumental.html', {})
 
 @csrf_protect
@@ -79,11 +85,25 @@ def especieDocumental_remove(request, pk):
 @login_required
 def especieDocumental_edit(request, pk):
     especieDocumental = get_object_or_404(EspecieDocumental, pk=pk)
+    # if request.POST:
+    #     nome = request.POST.get('nome', None)
+    #     especieDocumental.nome = nome
+    #     especieDocumental.save()
+    #     return HttpResponseRedirect(request.POST.get('next'))
+
     if request.POST:
         nome = request.POST.get('nome', None)
-        especieDocumental.nome = nome
-        especieDocumental.save()
-        return HttpResponseRedirect(request.POST.get('next'))
+        existeNoBanco = EspecieDocumental.objects.filter(nome=nome).exists()
+        if(nome!= ''):
+            if (existeNoBanco == True):
+                messages.add_message(request, messages.ERROR,
+                                     'A Especie Documental ja existe. Por favor, tente novamente!')
+            else:
+                nome = request.POST.get('nome', None)
+                especieDocumental.nome = nome
+                especieDocumental.save()
+                return HttpResponseRedirect(request.POST.get('next'))
+
     return render(request, 'editarEspecieDocumental.html', {'especieDocumental': especieDocumental})
 
 @csrf_protect

@@ -1,11 +1,11 @@
-Feature: Login form
+Feature: Formulario de Login
 
-  Scenario: Access the login form
+  Scenario: Autenticacao no sistema
 
-    Given an anonymous user
-    When I submit a valid login page
-    Then I am redirected to the home page
+    Given Sou um usuario anonimo
+    When Informo o siape e senha corretos
+    Then Sou redirecionado para a pagina principal do usuario
 
-    Given an anonymous user
-    When I submit an invalid login page
-    Then I am redirected to the login page
+    Given Sou um usuario anonimo
+    When Informo o siape e senha incorretos
+    Then Sou redirecionado para a pagina de login ate que eu informe siape e senha corretos

@@ -76,7 +76,7 @@ WSGI_APPLICATION = 'gde.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'IU',
+        'NAME': 'gde',
         'USER': 'postgres',
         'PASSWORD': '123456',
         'HOST': 'localhost',
